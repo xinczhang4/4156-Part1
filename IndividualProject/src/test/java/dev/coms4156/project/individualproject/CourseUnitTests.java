@@ -1,13 +1,27 @@
 package dev.coms4156.project.individualproject;
 
-import org.junit.jupiter.api.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Order;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
+import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.MethodOrderer;
 
-import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Unit tests for the Course class. This class contains tests to verify the functionality of the
+ * Course class.
+ */
 @SpringBootTest
 @ContextConfiguration
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class CourseUnitTests {
 
   @BeforeAll
@@ -17,12 +31,92 @@ public class CourseUnitTests {
 
 
   @Test
+  @Order(1)
   public void toStringTest() {
     String expectedResult = "\nInstructor: Griffin Newbold; Location: 417 IAB; Time: 11:40-12:55";
     assertEquals(expectedResult, testCourse.toString());
   }
 
-  /** The test course instance used for testing. */
+
+  @Test
+  @Order(2)
+  public void initialEnrollmentTest() {
+    assertEquals(0, testCourse.getEnrolledStudentCount());
+  }
+
+
+  @Test
+  @Order(3)
+  public void enrollStudentTest() {
+    testCourse.setEnrolledStudentCount(0);
+    assertTrue(testCourse.enrollStudent());
+    assertEquals(1, testCourse.getEnrolledStudentCount());
+  }
+
+  @Test
+  @Order(4)
+  public void enrollStudentWhenFullTest() {
+    testCourse.setEnrolledStudentCount(250);
+    assertFalse(testCourse.enrollStudent());
+    assertEquals(250, testCourse.getEnrolledStudentCount());
+  }
+
+  @Test
+  @Order(5)
+  public void dropStudentTest() {
+    testCourse.setEnrolledStudentCount(100);
+    assertTrue(testCourse.dropStudent());
+    assertEquals(99, testCourse.getEnrolledStudentCount());
+  }
+
+  @Test
+  @Order(6)
+  public void dropStudentWhenZeroTest() {
+    testCourse.setEnrolledStudentCount(0);
+    assertFalse(testCourse.dropStudent());
+    assertEquals(0, testCourse.getEnrolledStudentCount());
+  }
+
+  @Test
+  @Order(7)
+  public void reassignInstructorTest() {
+    testCourse.reassignInstructor("Alice Wang");
+    assertEquals("Alice Wang", testCourse.getInstructorName());
+  }
+
+  @Test
+  @Order(8)
+  public void reassignLocationTest() {
+    testCourse.reassignLocation("633 Mudd");
+    assertEquals("633 Mudd", testCourse.getCourseLocation());
+  }
+
+  @Test
+  @Order(9)
+  public void reassignTimeTest() {
+    testCourse.reassignTime("1:10-2:25");
+    assertEquals("1:10-2:25", testCourse.getCourseTimeSlot());
+  }
+
+  @Test
+  @Order(10)
+  public void isCourseFullTest() {
+    testCourse.setEnrolledStudentCount(251);
+    assertTrue(testCourse.isCourseFull());
+  }
+
+  @Test
+  @Order(10)
+  public void isCourseNotFullTest() {
+    testCourse.setEnrolledStudentCount(20);
+    assertFalse(testCourse.isCourseFull());
+  }
+
+
+
+  /**
+   * The test course instance used for testing.
+   */
   public static Course testCourse;
 }
 
