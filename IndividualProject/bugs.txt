@@ -34,3 +34,28 @@ Description: The getInstructorName() method incorrectly returns the course locat
 the instructor's name.
 Resolution: Update the method to return instructorName instead of courseLocation.
 
+Bug7: Incorrect Negative Return Value in getNumberOfMajors() Method
+Location: Department.java, method getNumberOfMajors()
+Description: The getNumberOfMajors() method returns the negative value of this.numberOfMajors
+instead of the actual number of majors.
+Resolution: Change the return statement to return positive numberOfMajors.
+
+Bug8: Hardcoded Return Value in getDepartmentChair() Method
+Location: Department.java, method getDepartmentChair()
+Description: The getDepartmentChair() method returns the string "this.departmentChair" instead of
+the actual value of the departmentChair field. This results in a hardcoded string being returned
+instead of the intended dynamic value.
+Resolution: Change the return statement to return this.departmentChair.
+
+Bug9: No Check for Negative Number of Majors in dropPersonFromMajor()
+Location: Department.java, method dropPersonFromMajor()
+Description: The dropPersonFromMajor() method decrements the numberOfMajors without checking if it
+is greater than zero. This can result in a negative number of majors, which is likely not intended.
+Resolution: Add a condition to check if numberOfMajors is greater than zero before decrementing it.
+
+Bug10: Redundant quotation marks in toString() Method
+Location: Department.java, method toString()
+Description: The toString() method incorrectly returns the literal string "result.toString()"
+instead of the actual content of the result StringBuilder.
+Resolution: Update the return statement to return result.toString().
+
