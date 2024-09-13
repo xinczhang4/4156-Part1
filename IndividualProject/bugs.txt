@@ -59,3 +59,35 @@ Description: The toString() method incorrectly returns the literal string "resul
 instead of the actual content of the result StringBuilder.
 Resolution: Update the return statement to return result.toString().
 
+Bug11: Incorrect HTTP Status Code in retrieveDepartment() Method
+Location: RouteController.java, method retrieveDepartment()
+Description: The method returns HTTP 200 (OK) when the department is not found, and
+HTTP 404 (NOT FOUND) when it is found, which is incorrect.
+Resolution: Reverse the status codes to ensure that HTTP 404 is returned when the department is not
+found, and HTTP 200 is returned when the department is successfully retrieved.
+
+Bug 12: Incorrect HTTP Status Code for Course Retrieval
+
+Location: retrieveCourse() method in RouteController.java
+Description: When a course is successfully found, the method is returning HttpStatus.FORBIDDEN,
+which indicates that the user is forbidden from accessing the resource. This is not appropriate for
+a successful course retrieval.
+Resolution: Change the status code to HttpStatus.OK when the course is successfully found.
+
+Bug 13: Incorrect HTTP Status Code and Major Number Displayed
+Location: getMajorCtFromDept() in RouteController.java
+Description: When success, the method is returning HttpStatus.FORBIDDEN, and there is extra negative
+mark when output major counts.
+Resolution: Change the status code to HttpStatus.OK when it success, remove the negative mark.
+
+Bug 14: Hardcode Course Time
+Location: findCourseTime() in RouteController.java
+Description: The string displayed is partially hardcoded to "some time" rather than dynamic variable.
+Resolution: Replace "some time" with Course getCourseTimeSlot function.
+
+Bug 15: Incorrect HTTP Status Code in Exception Handler
+Location: handleException() in RouteController.java
+Description: When an exception occurs, the method returns an HttpStatus.OK response,
+which indicates that the request was successfully processed. This is misleading, as the request
+actually failed due to an error.
+Resolution: Change the response status to HttpStatus.INTERNAL_SERVER_ERROR.
