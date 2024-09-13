@@ -40,6 +40,7 @@ public class RouteControllerUnitTests {
 
   @InjectMocks
   private RouteController testRouteController;
+  private IndividualProjectApplication individualProjectApplication;
 
   @Mock
   private MyFileDatabase myFileDatabase;
@@ -48,7 +49,7 @@ public class RouteControllerUnitTests {
   public static void setUpBeforeClass(){
     departmentMapping = new HashMap<>();
     coursesMapping = new HashMap<>();
-    course = new Course("Tony Dear", "402 CHANDLER", "1:10-2:25", 125);
+    course = new Course("Tony Dear", "402 CHANDLER", "1:10-3:40", 125);
     course.setEnrolledStudentCount(125);
     coursesMapping.put("3251", course);
     department = new Department("COMS", coursesMapping, "Luca Carloni", 2700);
@@ -80,10 +81,6 @@ public class RouteControllerUnitTests {
 
   @Test
   public void retrieveDepartmentFailedTest() {
-    // Setup mock data
-    HashMap<String, Department> departmentMapping = new HashMap<>();
-    when(myFileDatabase.getDepartmentMapping()).thenReturn(departmentMapping);
-
     ResponseEntity<?> response = testRouteController.retrieveDepartment("UNKNOWN");
     assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
     assertEquals("Department Not Found", response.getBody());
@@ -95,7 +92,6 @@ public class RouteControllerUnitTests {
     String deptCode = "COMS";
     int courseCode = 3251;
     when(myFileDatabase.getDepartmentMapping()).thenReturn(departmentMapping);
-//    when(myFileDatabase.getDepartmentMapping().get(deptCode).getCourseSelection()).thenReturn(coursesMapping);
 
     ResponseEntity<?> response = testRouteController.retrieveCourse(deptCode, courseCode);
     assertEquals(HttpStatus.OK, response.getStatusCode());
