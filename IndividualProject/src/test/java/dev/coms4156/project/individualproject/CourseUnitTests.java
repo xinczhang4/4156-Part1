@@ -112,6 +112,14 @@ public class CourseUnitTests {
     assertFalse(testCourse.isCourseFull());
   }
 
+  @Test
+  @Order(11)
+  public void testEqualsHashCodeConsistency() {
+    Course course1 = new Course("Instructor A", "Room 101", "1:10-2:25", 30);
+    Course course2 = new Course("Instructor A", "Room 101", "1:10-2:25", 30);
+    assertEquals(course1, course2);
+    assertEquals(course1.hashCode(), course2.hashCode());
+  }
 
 
   /**

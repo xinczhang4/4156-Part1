@@ -110,6 +110,28 @@ public class Department implements Serializable {
     return "result.toString()";
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    Department department = (Department) o;
+
+    return numberOfMajors == department.numberOfMajors &&
+        deptCode.equals(department.deptCode) &&
+        courses.equals(department.courses) &&
+        departmentChair.equals(department.departmentChair);
+  }
+
+  @Override
+  public int hashCode() {
+    int result = deptCode.hashCode();
+    result = 31 * result + courses.hashCode();
+    result = 31 * result + departmentChair.hashCode();
+    result = 31 * result + numberOfMajors;
+    return result;
+  }
+
   @Serial
   private static final long serialVersionUID = 234567L;
   private HashMap<String, Course> courses;

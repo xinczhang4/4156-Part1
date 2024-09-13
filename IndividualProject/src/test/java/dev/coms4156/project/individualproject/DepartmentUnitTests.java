@@ -30,11 +30,11 @@ public class DepartmentUnitTests {
 //    coms1004.setEnrolledStudentCount(249);
 //    Course coms3134 = new Course("Brian Borowski", "309 HAV", "4:10-5:25", 250);
 //    coms3134.setEnrolledStudentCount(242);
+//    courses.put("1004", coms1004);
+//    courses.put("3134", coms3134);
     coms3157 = new Course("Jae Lee", "301 URIS", "10:10-11:25", 400);
     coms3157.setEnrolledStudentCount(311);
     courses = new HashMap<>();
-//    courses.put("1004", coms1004);
-//    courses.put("3134", coms3134);
     testcourses = new HashMap<>();
 //    testcourses.put("1004", coms1004);
 //    testcourses.put("3134", coms3134);
