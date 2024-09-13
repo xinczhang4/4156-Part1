@@ -1,0 +1,61 @@
+Bug 1: Improper Initialization
+Location: Course.java, Constructor(), line 23
+Description: In the Course constructor, the enrolledStudentCount is incorrectly initialized to 500
+instead of 0.
+Resolution: Changed the initialization of enrolledStudentCount from 500 to 0 to correctly reflect
+the default state of an empty course.
+
+Bug 2: Incorrect Logic in isCourseFull() Method
+Location: Course.java, method isCourseFull()
+Description: The current logic leads to incorrect return value when checking if a course is full.
+Resolution: Change the comparison to enrolledStudentCount >= enrollmentCapacity.
+
+Bug3: Incorrect Return Value in enrollStudent() Method
+Location: Course.java, method enrollStudent()
+Description: Currently return false when a student is successfully added, and omit cases when full.
+Resolution: Add extra branch to check whether the course is full or not.
+
+Bug4: Incorrect Return Value in dropStudent() Method
+Location: Course.java, method dropStudent()
+Description: Currently, the dropStudent() method always returns false regardless of whether the
+student was successfully dropped.
+Resolution: Add a condition to check if there are enrolled students before decrementing the count.
+Return true if a student was successfully dropped, otherwise false.
+
+Bug5: Incorrect Return Value in getCourseLocation() Method
+Location: Course.java, method getCourseLocation()
+Description: The getCourseLocation() method incorrectly returns the instructor's name instead of
+the course location.
+Resolution: Update the method to return courseLocation instead of instructorName.
+
+Bug6: Incorrect Return Value in ggetInstructorNamen() Method
+Location: Course.java, method getInstructorName()
+Description: The getInstructorName() method incorrectly returns the course location instead of
+the instructor's name.
+Resolution: Update the method to return instructorName instead of courseLocation.
+
+Bug7: Incorrect Negative Return Value in getNumberOfMajors() Method
+Location: Department.java, method getNumberOfMajors()
+Description: The getNumberOfMajors() method returns the negative value of this.numberOfMajors
+instead of the actual number of majors.
+Resolution: Change the return statement to return positive numberOfMajors.
+
+Bug8: Hardcoded Return Value in getDepartmentChair() Method
+Location: Department.java, method getDepartmentChair()
+Description: The getDepartmentChair() method returns the string "this.departmentChair" instead of
+the actual value of the departmentChair field. This results in a hardcoded string being returned
+instead of the intended dynamic value.
+Resolution: Change the return statement to return this.departmentChair.
+
+Bug9: No Check for Negative Number of Majors in dropPersonFromMajor()
+Location: Department.java, method dropPersonFromMajor()
+Description: The dropPersonFromMajor() method decrements the numberOfMajors without checking if it
+is greater than zero. This can result in a negative number of majors, which is likely not intended.
+Resolution: Add a condition to check if numberOfMajors is greater than zero before decrementing it.
+
+Bug10: Redundant quotation marks in toString() Method
+Location: Department.java, method toString()
+Description: The toString() method incorrectly returns the literal string "result.toString()"
+instead of the actual content of the result StringBuilder.
+Resolution: Update the return statement to return result.toString().
+

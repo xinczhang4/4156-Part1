@@ -98,7 +98,7 @@ public class DepartmentUnitTests {
   }
 
   @Test
-  @Order(8)
+  @Order(9)
   public void createCourseTest() {
     testDepartment.createCourse("3251", "Tony Dear", "402 CHANDLER", "1:10-3:40", 125);
     Course coms3251 = new Course("Tony Dear", "402 CHANDLER", "1:10-3:40", 125);
