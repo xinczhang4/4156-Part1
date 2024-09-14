@@ -1,30 +1,29 @@
 package dev.coms4156.project.individualproject;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.TestMethodOrder;
-import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 
-import static org.mockito.Mockito.*;
-
+/**
+ * Unit tests for the IndividualProjectApplication class. This class contains tests to verify the
+ * functionality of the application's setup and termination behavior.
+ */
 @SpringBootTest
 @ContextConfiguration
 public class IndividialProjectApplicationUnitTests {
 
-  @Mock
-  private MyFileDatabase mockDatabase;
-
   private IndividualProjectApplication app;
 
+  /**
+   * Sets up the test environment before each test case by initializing Mockito annotations and
+   * creating a new instance of IndividualProjectApplication.
+   */
   @BeforeEach
   void setUp() {
     MockitoAnnotations.openMocks(this);
@@ -40,6 +39,7 @@ public class IndividialProjectApplicationUnitTests {
 
   @Test
   void testOnTermination() {
+    MyFileDatabase mockDatabase;
     mockDatabase = mock(MyFileDatabase.class);
     app.myFileDatabase = mockDatabase;
     app.onTermination();

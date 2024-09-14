@@ -32,8 +32,9 @@ public class Course implements Serializable {
    * @return true if the student is successfully enrolled, false otherwise.
    */
   public boolean enrollStudent() {
-    if(isCourseFull())
+    if (isCourseFull()) {
       return false;
+    }
     enrolledStudentCount++;
     return true;
   }
@@ -44,7 +45,7 @@ public class Course implements Serializable {
    * @return true if the student is successfully dropped, false otherwise.
    */
   public boolean dropStudent() {
-    if(enrolledStudentCount > 0){
+    if (enrolledStudentCount > 0) {
       enrolledStudentCount--;
       return true;
     }
@@ -70,8 +71,7 @@ public class Course implements Serializable {
     return this.enrolledStudentCount;
   }
 
-
-
+  @Override
   public String toString() {
     return "\nInstructor: " + instructorName + "; Location: " + courseLocation + "; Time: "
         + courseTimeSlot;
@@ -104,16 +104,19 @@ public class Course implements Serializable {
 
   @Override
   public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
 
     Course course = (Course) o;
 
-    return enrollmentCapacity == course.enrollmentCapacity &&
-        enrolledStudentCount == course.enrolledStudentCount &&
-        instructorName.equals(course.instructorName) &&
-        courseLocation.equals(course.courseLocation) &&
-        courseTimeSlot.equals(course.courseTimeSlot);
+    return enrollmentCapacity == course.enrollmentCapacity
+        && enrolledStudentCount == course.enrolledStudentCount && instructorName.equals(
+        course.instructorName) && courseLocation.equals(course.courseLocation)
+        && courseTimeSlot.equals(course.courseTimeSlot);
   }
 
   @Override

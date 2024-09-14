@@ -91,3 +91,51 @@ Description: When an exception occurs, the method returns an HttpStatus.OK respo
 which indicates that the request was successfully processed. This is misleading, as the request
 actually failed due to an error.
 Resolution: Change the response status to HttpStatus.INTERNAL_SERVER_ERROR.
+
+Bug16: Unnecessary Import from PMD
+Description: Unused import accross test units and src code
+Resolution: Delete all unused import.
+
+Bug 17: LouseCoupling using HashMap
+Description: HashMap type is used accross the application which is depreciated
+Resolution: Change all HashMap type definition to Map.
+
+Bug18: SingularField
+Location: IndividualProjectApplicationUnitTests.java
+Description: The mockDatabase is only used in a single test method.
+Resolution: Declare it as a local variable inside the test method using this variable.
+
+Bug19: ControlStatementBraces
+Location: Course.java line36, line107, line108
+Resolution: Add braces for these statements.
+
+Bug20: MissingOverride
+Location: Course.java, Department.java toString() method
+Resolution: Add @Override annotation to toString() method.
+
+Bug25: ReturnEmptyCollectionRatherThanNull
+Location: MyFileDatabase.java line54
+Description: When handling exception, it should return an empty collection rather than null.
+Resolution: Return new HashMap() instance rather than null.
+
+Bug22: UnnecessaryAnnotationValueElement
+Location: RouteController.java line39
+Description: Avoid the use of value in annotations when its the only element.
+Resolution: Removing the 'value =' inside @RequestParam
+
+Bug23: UseLocaleWithCaseConversions
+Location: RouteController.java line44, line47
+Resolution: When doing a String.toLowerCase()/toUpperCase() call, use a Locale
+
+Bug24: LiteralsFirstInComparisons
+Location: IndividualProjectApplication line35
+Description: It is better to put the literal on the left-hand side of the comparison. This avoids
+potential NullPointerException issues if arg happens to be null.
+Resolution: Revert to "setup".equals(arg).
+
+Bug25: UseLocaleWithCaseConversions
+Location: RouteController.java line44,line47
+Description: When doing a String.toLowerCase()/toUpperCase() call, use a Locale
+Resolution: Use toString(Locale.ROOT) to ensure consistent behavior across different environments
+
+

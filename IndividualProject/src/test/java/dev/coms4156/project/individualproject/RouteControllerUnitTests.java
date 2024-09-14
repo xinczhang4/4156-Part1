@@ -2,45 +2,27 @@ package dev.coms4156.project.individualproject;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.mock;
-import static org.mockito.MockitoAnnotations.openMocks;
-
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.HashMap;
+import java.util.Map;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.mockito.plugins.MockMaker;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.ContextConfiguration;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 
 
 /**
- * Unit tests for the Course class. This class contains tests to verify the functionality of the
- * Course class.
+ * Unit tests for the RouteController class. This class contains tests to verify the functionality
+ * of the RouteController class.
  */
 @ContextConfiguration
 @TestMethodOrder(OrderAnnotation.class)
@@ -53,12 +35,16 @@ public class RouteControllerUnitTests {
   @InjectMocks
   private RouteController testRouteController;
 
-//  @MockBean
-//  private IndividualProjectApplication individualProjectApplication;
 
   @Mock
   private MyFileDatabase myFileDatabase;
 
+  /**
+   * Sets up the test environment before all test cases by initializing test data for the Department
+   * and Course classes.
+   *
+   * @throws Exception if any error occurs during setup
+   */
   @BeforeAll
   public static void setUpBeforeClass() throws Exception {
     String[] times = {"11:40-12:55", "4:10-5:25", "10:10-11:25", "2:40-3:55"};
@@ -81,7 +67,7 @@ public class RouteControllerUnitTests {
     Course psyc4493 = new Course("Jennifer Blaze", "200 SCH", "2:10-4:00", 15);
     psyc4493.setEnrolledStudentCount(9);
 
-    HashMap<String, Course> courses = new HashMap<>();
+    Map<String, Course> courses = new HashMap<>();
     courses.put("1001", psyc1001);
     courses.put("1610", psyc1610);
     courses.put("2235", psyc2235);
@@ -99,9 +85,10 @@ public class RouteControllerUnitTests {
   public void indexTest() throws Exception {
     mockMvc.perform(get("/"))
         .andExpect(status().isOk())
-        .andExpect(content().string("Welcome, in order to make an API call direct your browser or Postman to an endpoint "
-            + "\n\n This can be done using the following format: \n\n http:127.0.0"
-            + ".1:8080/endpoint?arg=value"));
+        .andExpect(content().string(
+            "Welcome, in order to make an API call direct your browser or Postman to an endpoint "
+                + "\n\n This can be done using the following format: \n\n http:127.0.0"
+                + ".1:8080/endpoint?arg=value"));
   }
 
   @Test
