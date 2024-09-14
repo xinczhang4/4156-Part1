@@ -1,43 +1,44 @@
 package dev.coms4156.project.individualproject;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 
 import java.util.HashMap;
+import java.util.Map;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 
 
 /**
- * Unit tests for the Course class. This class contains tests to verify the functionality of the
- * Course class.
+ * Unit tests for the Department class. This class contains tests to verify the functionality of the
+ * Department class.
  */
 @SpringBootTest
 @ContextConfiguration
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class DepartmentUnitTests {
 
+  /**
+   * Sets up dummy examples for testing, including creating a sample course and department.
+   */
   @BeforeAll
   public static void setUpForTesting() {
-//    Course coms1004 = new Course("Adam Cannon", "417 IAB", "11:40-12:55", 400);
-//    coms1004.setEnrolledStudentCount(249);
-//    Course coms3134 = new Course("Brian Borowski", "309 HAV", "4:10-5:25", 250);
-//    coms3134.setEnrolledStudentCount(242);
-//    courses.put("1004", coms1004);
-//    courses.put("3134", coms3134);
+    //    Course coms1004 = new Course("Adam Cannon", "417 IAB", "11:40-12:55", 400);
+    //    coms1004.setEnrolledStudentCount(249);
+    //    Course coms3134 = new Course("Brian Borowski", "309 HAV", "4:10-5:25", 250);
+    //    coms3134.setEnrolledStudentCount(242);
+    //    courses.put("1004", coms1004);
+    //    courses.put("3134", coms3134);
     coms3157 = new Course("Jae Lee", "301 URIS", "10:10-11:25", 400);
     coms3157.setEnrolledStudentCount(311);
     courses = new HashMap<>();
     testcourses = new HashMap<>();
-//    testcourses.put("1004", coms1004);
-//    testcourses.put("3134", coms3134);
+    //    testcourses.put("1004", coms1004);
+    //    testcourses.put("3134", coms3134);
     testDepartment = new Department("COMS", courses, "Luca Carloni", 2700);
   }
 
@@ -94,7 +95,8 @@ public class DepartmentUnitTests {
   @Test
   @Order(8)
   public void toStringTest() {
-    assertEquals("COMS 3157: \nInstructor: Jae Lee; Location: 301 URIS; Time: 10:10-11:25\n", testDepartment.toString());
+    assertEquals("COMS 3157: \nInstructor: Jae Lee; Location: 301 URIS; Time: 10:10-11:25\n",
+        testDepartment.toString());
   }
 
   @Test
@@ -107,7 +109,7 @@ public class DepartmentUnitTests {
   }
 
   public static Department testDepartment;
-  public static HashMap<String, Course> courses;
-  public static HashMap<String, Course> testcourses;
+  public static Map<String, Course> courses;
+  public static Map<String, Course> testcourses;
   public static Course coms3157;
 }
